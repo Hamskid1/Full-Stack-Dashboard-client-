@@ -48,10 +48,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <MenuIcon />
           </IconButton>
           <FlexBetween
-            backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
-            gap="3rem"
-            p="0.1rem 1.5rem"
+            sx={{
+              backgroundColor: theme.palette.background.alt,
+              borderRadius: "9px",
+              gap: "3rem",
+              p: "0.1rem 1.5rem",
+            }}
           >
             <InputBase placeholder="Search..." />
             <IconButton>
@@ -88,10 +90,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 component="img"
                 alt="profile"
                 src={profileImage}
-                height="32px"
-                width="32px"
-                borderRadius="50%"
-                sx={{ objectFit: "cover" }}
+                sx={{
+                  height: "32px",
+                  width: "32px",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
               />
               <Box textAlign="left">
                 <Typography

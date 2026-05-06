@@ -34,62 +34,20 @@ import FlexBetween from "./FlexBetween";
 import profileImage from "assets/profile.jpeg";
 
 const navItems = [
-  {
-    text: "Dashboard",
-    icon: <HomeOutlined />,
-  },
-  {
-    text: "Client Facing",
-    icon: null,
-  },
-  {
-    text: "Products",
-    icon: <ShoppingCartOutlined />,
-  },
-  {
-    text: "Customers",
-    icon: <Groups2Outlined />,
-  },
-  {
-    text: "Transactions",
-    icon: <ReceiptLongOutlined />,
-  },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
-  },
+  { text: "Dashboard", icon: <HomeOutlined /> },
+  { text: "Client Facing", icon: null },
+  { text: "Products", icon: <ShoppingCartOutlined /> },
+  { text: "Customers", icon: <Groups2Outlined /> },
+  { text: "Transactions", icon: <ReceiptLongOutlined /> },
+  { text: "Geography", icon: <PublicOutlined /> },
+  { text: "Sales", icon: null },
+  { text: "Overview", icon: <PointOfSaleOutlined /> },
+  { text: "Daily", icon: <TodayOutlined /> },
+  { text: "Monthly", icon: <CalendarMonthOutlined /> },
+  { text: "Breakdown", icon: <PieChartOutlined /> },
+  { text: "Management", icon: null },
+  { text: "Admin", icon: <AdminPanelSettingsOutlined /> },
+  { text: "Performance", icon: <TrendingUpOutlined /> },
 ];
 
 const Sidebar = ({
@@ -121,7 +79,7 @@ const Sidebar = ({
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
               backgroundColor: theme.palette.background.alt,
-              boxSixing: "border-box",
+              boxSizing: "border-box", // ✅ fixed typo: was "boxSixing"
               borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
             },
@@ -195,15 +153,23 @@ const Sidebar = ({
 
           <Box position="absolute" bottom="2rem">
             <Divider />
-            <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+            <FlexBetween
+              sx={{
+                textTransform: "none",
+                gap: "1rem",
+                m: "1.5rem 2rem 0 3rem",
+              }}
+            >
               <Box
                 component="img"
                 alt="profile"
                 src={profileImage}
-                height="40px"
-                width="40px"
-                borderRadius="50%"
-                sx={{ objectFit: "cover" }}
+                sx={{
+                  height: "40px",      
+                  width: "40px",       
+                  borderRadius: "50%", 
+                  objectFit: "cover",
+                }}
               />
               <Box textAlign="left">
                 <Typography
@@ -223,7 +189,7 @@ const Sidebar = ({
               <SettingsOutlined
                 sx={{
                   color: theme.palette.secondary[300],
-                  fontSize: "25px ",
+                  fontSize: "25px",
                 }}
               />
             </FlexBetween>
