@@ -23,8 +23,8 @@ const Layout = () => {
         setIsSidebarOpen={setIsSidebarOpen}
       />
       <Box
-        flexGrow={1}
         sx={{
+          flexGrow: 1,
           marginLeft: isNonMobile && isSidebarOpen ? "250px" : "0",
         }}
       >
