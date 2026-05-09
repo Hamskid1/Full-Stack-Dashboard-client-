@@ -11,7 +11,6 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-
 import Header from "components/Header";
 import { useGetProductsQuery } from "state/api";
 
@@ -31,8 +30,6 @@ const Product = ({
   return (
     <Card
       sx={{
-        width: "100%",
-        height: "100%",
         backgroundImage: "none",
         backgroundColor: theme.palette.background.alt,
         borderRadius: "0.55rem",
@@ -46,36 +43,24 @@ const Product = ({
         >
           {category}
         </Typography>
-
         <Typography variant="h5" component="div">
           {name}
         </Typography>
-
-        <Typography
-          sx={{ mb: "1.5rem" }}
-          color={theme.palette.secondary[400]}
-        >
+        <Typography sx={{ mb: "1.5rem" }} color={theme.palette.secondary[400]}>
           ${Number(price).toFixed(2)}
         </Typography>
-
         <Rating value={rating} readOnly />
-
-        <Typography variant="body2">
-          {description}
-        </Typography>
+        <Typography variant="body2">{description}</Typography>
       </CardContent>
-
       <CardActions>
         <Button
-          variant="contained"
-          color="primary"
+          variant="primary"
           size="small"
           onClick={() => setIsExpanded(!isExpanded)}
         >
           See More
         </Button>
       </CardActions>
-
       <Collapse
         in={isExpanded}
         timeout="auto"
@@ -86,21 +71,12 @@ const Product = ({
       >
         <CardContent>
           <Typography>id: {_id}</Typography>
-
+          <Typography>Supply Left: {supply}</Typography>
           <Typography>
-            Supply Left: {supply}
+            Yearly Sales This Year: {stat[0].yearlySalesTotal} 
           </Typography>
-
           <Typography>
-            Yearly Sales This Year:
-            {" "}
-            {stat.yearlySalesTotal}
-          </Typography>
-
-          <Typography>
-            Yearly Units Sold This Year:
-            {" "}
-            {stat.yearlyTotalSoldUnits}
+            Yearly Units Sold This Year: {stat[0].yearlyTotalSoldUnits} 
           </Typography>
         </CardContent>
       </Collapse>
@@ -110,34 +86,47 @@ const Product = ({
 
 const Products = () => {
   const { data, isLoading } = useGetProductsQuery();
-
-  const isNonMobile = useMediaQuery("(min-width:1000px)");
+  const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header
-        title="PRODUCTS"
-        subtitle="See your list of products."
-      />
-
-      {data && !isLoading ? (
+      <Header title="PRODUCTS" subtitle="See your list of products." />
+      {data && !isLoading ? ( 
         <Box
           sx={{
             mt: "20px",
             display: "grid",
-            gridTemplateColumns: isNonMobile
-              ? "repeat(4, minmax(250px, 1fr))"
-              : "repeat(1, minmax(0, 1fr))",
-            gap: "20px",
-            width: "100%",
+            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+            justifyContent: "space-between",
+            rowGap: "20px",
+            columnGap: "1.33%",
+            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
           }}
         >
-          {data.map((product) => (
-            <Product
-              key={product._id}
-              {...product}
-            />
-          ))}
+          {data.map(
+            ({
+              _id,
+              name,
+              description,
+              price,
+              rating,
+              category,
+              supply,
+              stat,
+            }) => (
+              <Product
+                key={_id}
+                _id={_id}
+                name={name}
+                description={description}
+                price={price}
+                rating={rating}
+                category={category}
+                supply={supply}
+                stat={stat}
+              />
+            )
+          )}
         </Box>
       ) : (
         <>Loading...</>

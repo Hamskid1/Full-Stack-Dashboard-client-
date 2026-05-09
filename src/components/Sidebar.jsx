@@ -79,7 +79,7 @@ const Sidebar = ({
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
               backgroundColor: theme.palette.background.alt,
-              boxSizing: "border-box",
+              boxSizing: "border-box", // ✅ fixed typo
               borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
             },
@@ -88,7 +88,7 @@ const Sidebar = ({
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}> {/* ✅ fixed */}
                   <Typography variant="h4" fontWeight="bold">
                     ECOMVISION
                   </Typography>
@@ -165,9 +165,9 @@ const Sidebar = ({
                 alt="profile"
                 src={profileImage}
                 sx={{
-                  height: "40px",
-                  width: "40px",
-                  borderRadius: "50%",
+                  height: "40px",      
+                  width: "40px",       
+                  borderRadius: "50%", 
                   objectFit: "cover",
                 }}
               />

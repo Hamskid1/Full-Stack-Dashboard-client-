@@ -25,7 +25,9 @@ const Layout = () => {
       <Box
         sx={{
           flexGrow: 1,
+          width: isNonMobile && isSidebarOpen ? "calc(100% - 250px)" : "100%", 
           marginLeft: isNonMobile && isSidebarOpen ? "250px" : "0",
+          // overflowX: "hidden", 
         }}
       >
         <Navbar

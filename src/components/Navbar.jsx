@@ -48,12 +48,10 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <MenuIcon />
           </IconButton>
           <FlexBetween
-            sx={{
-              backgroundColor: theme.palette.background.alt,
-              borderRadius: "9px",
-              gap: "3rem",
-              p: "0.1rem 1.5rem",
-            }}
+            backgroundColor={theme.palette.background.alt}
+            borderRadius="9px"
+            gap="3rem"
+            p="0.1rem 1.5rem"
           >
             <InputBase placeholder="Search..." />
             <IconButton>
@@ -63,7 +61,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         </FlexBetween>
 
         {/* RIGHT SIDE */}
-        <FlexBetween sx={{ gap: "1.5rem" }}>
+        <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined sx={{ fontSize: "25px" }} />
@@ -91,8 +89,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 alt="profile"
                 src={profileImage}
                 sx={{
-                  height: "32px",
-                  width: "32px",
+                  height: "32px",     
+                  width: "32px",      
                   borderRadius: "50%",
                   objectFit: "cover",
                 }}
