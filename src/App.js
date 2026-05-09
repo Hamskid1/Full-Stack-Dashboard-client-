@@ -7,6 +7,7 @@ import { themeSettings } from "theme";
 import Layout from "scenes/layout";
 import Dashboard from "scenes/dashboard";
 import Products from "scenes/products";
+import Customers from "scenes/customers";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -15,10 +16,10 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter
-        // future={{
-        //   v7_startTransition: true,      
-        //   v7_relativeSplatPath: true,       
-        // }}
+        future={{
+          v7_startTransition: true,      
+          v7_relativeSplatPath: true,       
+        }}
       >
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -27,6 +28,7 @@ function App() {
               <Route path="" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/customers" element={<Customers />} />
             </Route>
           </Routes>
         </ThemeProvider>
