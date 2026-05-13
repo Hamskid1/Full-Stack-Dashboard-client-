@@ -8,12 +8,13 @@ import DataGridCustomToolbar from "components/DataGridCustomToolbar";
 const Transactions = () => {
   const theme = useTheme();
 
-  // value to be sent to the Backend
+  // values to be sent to the backend
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(20);
   const [sort, setSort] = useState({});
   const [search, setSearch] = useState("");
 
+  const [searchInput, setSearchInput] = useState("");
   const { data, isLoading } = useGetTransactionsQuery({
     page,
     pageSize,
@@ -85,18 +86,22 @@ const Transactions = () => {
         <DataGrid
           loading={isLoading || !data}
           getRowId={(row) => row._id}
-          rows={data?.transactions || []}
+          rows={(data && data.transactions) || []}
           columns={columns}
-            rowCount={data?.total || 0}
-            pagination
-            page={page}
-            pageSize={pageSize}
-            paginationMode="server"
-            sortingMode="server"
-            onPageChange={(newPage) => setPage(newPage)}
-            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-            onSortModelChange={(newSortModel) => setSort(...newSortModel)}
-            components={{ Toolbar: DataGridCustomToolbar }}
+          rowCount={(data && data.total) || 0}
+          rowsPerPageOptions={[20, 50, 100]}
+          pagination
+          page={page}
+          pageSize={pageSize}
+          paginationMode="server"
+          sortingMode="server"
+          onPageChange={(newPage) => setPage(newPage)}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          onSortModelChange={(newSortModel) => setSort(...newSortModel)}
+          components={{ Toolbar: DataGridCustomToolbar }}
+          componentsProps={{
+            toolbar: { searchInput, setSearchInput, setSearch },
+          }}
         />
       </Box>
     </Box>
