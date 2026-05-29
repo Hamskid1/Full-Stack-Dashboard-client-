@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useMemo } from "react";
+import { ResponsiveLine } from "@nivo/line";
+import { useTheme } from "@mui/material";
+import { useGetSalesQuery } from "state/api";
 
-const OverviewChart = () => {
-  return (
-    <div>OverviewChart</div>
-  )
-}
+const OverviewChart = ({ isDashboard = false, view }) => {
+  const theme = useTheme();
+  const { data, isLoading } = useGetSalesQuery();
 
-export default OverviewChart
+  const [totalSalesLine, totalUnitsLine] = useMemo (() => {
+    if (!data) return [];
+    
+  }, data)
+
+  return <div>OverviewChart</div>;
+};
+
+export default OverviewChart;
