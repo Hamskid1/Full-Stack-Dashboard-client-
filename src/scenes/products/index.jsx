@@ -50,6 +50,7 @@ const Product = ({
           ${Number(price).toFixed(2)}
         </Typography>
         <Rating value={rating} readOnly />
+
         <Typography variant="body2">{description}</Typography>
       </CardContent>
       <CardActions>
@@ -73,10 +74,10 @@ const Product = ({
           <Typography>id: {_id}</Typography>
           <Typography>Supply Left: {supply}</Typography>
           <Typography>
-            Yearly Sales This Year: {stat[0].yearlySalesTotal} 
+            Yearly Sales This Year: {stat.yearlySalesTotal}
           </Typography>
           <Typography>
-            Yearly Units Sold This Year: {stat[0].yearlyTotalSoldUnits} 
+            Yearly Units Sold This Year: {stat.yearlyTotalSoldUnits}
           </Typography>
         </CardContent>
       </Collapse>
@@ -91,15 +92,15 @@ const Products = () => {
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="PRODUCTS" subtitle="See your list of products." />
-      {data && !isLoading ? ( 
+      {data || !isLoading ? (
         <Box
+          mt="20px"
+          display="grid"
+          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+          justifyContent="space-between"
+          rowGap="20px"
+          columnGap="1.33%"
           sx={{
-            mt: "20px",
-            display: "grid",
-            gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-            justifyContent: "space-between",
-            rowGap: "20px",
-            columnGap: "1.33%",
             "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
           }}
         >

@@ -9,7 +9,6 @@ import { useGetUserQuery } from "state/api";
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
   const userId = useSelector((state) => state.global.userId);
   const { data } = useGetUserQuery(userId);
 
@@ -22,14 +21,7 @@ const Layout = () => {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
       />
-      <Box
-        sx={{
-          flexGrow: 1,
-          width: isNonMobile && isSidebarOpen ? "calc(100% - 250px)" : "100%", 
-          marginLeft: isNonMobile && isSidebarOpen ? "250px" : "0",
-          // overflowX: "hidden", 
-        }}
-      >
+      <Box flexGrow={1}>
         <Navbar
           user={data || {}}
           isSidebarOpen={isSidebarOpen}

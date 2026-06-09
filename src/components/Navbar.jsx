@@ -88,14 +88,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 component="img"
                 alt="profile"
                 src={profileImage}
-                sx={{
-                  height: "32px",     
-                  width: "32px",      
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                }}
+                height="32px"
+                width="32px"
+                borderRadius="50%"
+                sx={{ objectFit: "cover" }}
               />
-              <Box sx={{ textAlign: "left" }}>
+              <Box textAlign="left">
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
